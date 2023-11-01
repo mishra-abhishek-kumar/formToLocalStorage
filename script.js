@@ -61,21 +61,25 @@ function addUser(e) {
 
 function removeUser(e) {
     if(e.target.classList.contains('del')) {
+        if(confirm('Are you sure!')) {
         //spliting li text, returns an array
         partsString = e.target.parentElement.innerText.split('-');
         email_add = partsString[1].trim();
         userList.removeChild(e.target.parentElement);
         localStorage.removeItem(email_add);
+        }
     }
 }
 
 function editUser(e) {
     if(e.target.classList.contains('edit')) {
-        partsString = e.target.parentElement.innerText.split('-');
-        inputName.value = partsString[0].trim();
-        inputEmail.value = partsString[1].trim();
-        inputPhone.value = partsString[2].trim();
-        localStorage.removeItem(partsString[1].trim());
-        userList.removeChild(e.target.parentElement);
+        if(confirm('Are you sure')) {
+            partsString = e.target.parentElement.innerText.split('-');
+            inputName.value = partsString[0].trim();
+            inputEmail.value = partsString[1].trim();
+            inputPhone.value = partsString[2].trim();
+            localStorage.removeItem(partsString[1].trim());
+            userList.removeChild(e.target.parentElement);
+        }
     }
 }
