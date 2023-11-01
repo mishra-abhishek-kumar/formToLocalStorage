@@ -77,11 +77,11 @@ input[type=submit]:hover {
 }
 
 .del {
-    padding: 2px;
+    padding: 2px 8px;
+    font-weight: bold;
+    background-color: #e7e6e6;
     border: 1px solid gray;
     border-radius: 5px;
-    color: white;
-    background-color: coral;
     width: fit-content;
     margin-left: 10px;
     margin-top: -2px;
@@ -89,20 +89,17 @@ input[type=submit]:hover {
 
 .del:hover {
     background-color: red;
-    box-shadow: 2px 2px orangered;
+    box-shadow: 1px 1px rgb(197, 0, 0);
     cursor: pointer;
-}
-
-.del:active {
-    background-color: orangered;
+    color: white;
 }
 
 .edit {
-    padding: 2px;
+    padding: 2px 8px;
+    font-weight: bold;
+    background-color: #e7e6e6;
     border: 1px solid gray;
     border-radius: 5px;
-    color: white;
-    background-color: coral;
     width: fit-content;
     margin-left: 10px;
     margin-top: -2px;
@@ -110,10 +107,6 @@ input[type=submit]:hover {
 
 .edit:hover {
     background-color: green;
-    box-shadow: 4px 4px greenyellow;
+    box-shadow: 2px 2px rgb(0, 82, 0);
     cursor: pointer;
-}
-
-.edit:active {
-    background-color: coral;
 }
