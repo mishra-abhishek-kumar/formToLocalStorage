@@ -24,6 +24,10 @@ ul li {
     border: 1px solid gray;
 }
 
+.float-right {
+    float: right !important
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -62,7 +66,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: rgb(247, 139, 45);
+    background-color: coral;
 }
 
 .error {
@@ -70,4 +74,25 @@ input[type=submit]:hover {
     color: #fff;
     padding: 5px;
     margin: 5px;
+}
+
+.del {
+    padding: 2px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: white;
+    background-color: orangered;
+    width: fit-content;
+    margin-left: 10px;
+    margin-top: -2px;
+}
+
+.del:hover {
+    background-color: red;
+    box-shadow: 2px 2px orangered;
+    cursor: pointer;
+}
+
+.del:active {
+    background-color: orangered;
 }

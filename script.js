@@ -6,6 +6,7 @@ const form = document.getElementById('form');
 const msg = document.querySelector('.msg');
 
 form.addEventListener('submit', submitForm);
+userList.addEventListener('click', removeUser);
 
 function submitForm(e) {
     e.preventDefault();
@@ -18,9 +19,16 @@ function submitForm(e) {
         setTimeout(() => msg.remove(), 3000);
     } else {
         const li = document.createElement('li');
-        li.appendChild(document.createTextNode(`${inputName.value} - ${inputEmail.value} - ${inputPhone.value}`));
-        userList.appendChild(li);
 
+        const delBtn = document.createElement('button');
+        delBtn.className = 'del float-right';
+        delBtn.appendChild(document.createTextNode("DELETE"));
+
+        li.appendChild(document.createTextNode(`${inputName.value} - ${inputEmail.value} - ${inputPhone.value}`));
+        li.appendChild(delBtn);
+
+        userList.appendChild(li);
+    
         const userData = {
             userName: `${inputName.value}`,
             userEmail: `${inputEmail.value}`,
@@ -36,4 +44,11 @@ function submitForm(e) {
     }
 }
 
-
+function removeUser(e) {
+    if(e.target.classList.contains('del')) {
+        partsString = e.target.parentElement.innerText.split('-');
+        email_add = partsString[1].trim();
+        userList.removeChild(e.target.parentElement);
+        localStorage.removeItem(email_add);
+    }
+}
