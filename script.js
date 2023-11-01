@@ -5,10 +5,11 @@ const userList = document.getElementById('users');
 const form = document.getElementById('form');
 const msg = document.querySelector('.msg');
 
-form.addEventListener('submit', submitForm);
+form.addEventListener('submit', addUser);
 userList.addEventListener('click', removeUser);
+userList.addEventListener('click', editUser);
 
-function submitForm(e) {
+function addUser(e) {
     e.preventDefault();
 
     if (inputName.value === '' || inputEmail.value === '' || inputPhone.value === '') {
@@ -18,23 +19,37 @@ function submitForm(e) {
 
         setTimeout(() => msg.remove(), 3000);
     } else {
+        //Creating different elements to be added in DOM
         const li = document.createElement('li');
+        const delBtn = document.createElement('input');
+        const editBtn = document.createElement('input');
 
-        const delBtn = document.createElement('button');
+        //Creating Delete button
         delBtn.className = 'del float-right';
-        delBtn.appendChild(document.createTextNode("DELETE"));
+        delBtn.setAttribute('type', "button");
+        delBtn.setAttribute('value', "DELETE");
 
+        //Creating Edit button
+        editBtn.className = 'edit float-right';
+        editBtn.setAttribute('type', "button");
+        editBtn.setAttribute('value', "EDIT");
+
+        //Appending all above 3 elements
         li.appendChild(document.createTextNode(`${inputName.value} - ${inputEmail.value} - ${inputPhone.value}`));
         li.appendChild(delBtn);
+        li.appendChild(editBtn);
 
+        //appendimg the li to ul inside DOM
         userList.appendChild(li);
     
+        //Storing user Data as an object
         const userData = {
             userName: `${inputName.value}`,
             userEmail: `${inputEmail.value}`,
             userPhone: `${inputPhone.value}`
         }
 
+        //setting localStorage with userData
         localStorage.setItem(inputEmail.value, JSON.stringify(userData));
 
         inputName.value = '';
@@ -46,9 +61,21 @@ function submitForm(e) {
 
 function removeUser(e) {
     if(e.target.classList.contains('del')) {
+        //spliting li text, returns an array
         partsString = e.target.parentElement.innerText.split('-');
         email_add = partsString[1].trim();
         userList.removeChild(e.target.parentElement);
         localStorage.removeItem(email_add);
+    }
+}
+
+function editUser(e) {
+    if(e.target.classList.contains('edit')) {
+        partsString = e.target.parentElement.innerText.split('-');
+        inputName.value = partsString[0].trim();
+        inputEmail.value = partsString[1].trim();
+        inputPhone.value = partsString[2].trim();
+        localStorage.removeItem(partsString[1].trim());
+        userList.removeChild(e.target.parentElement);
     }
 }

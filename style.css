@@ -81,7 +81,7 @@ input[type=submit]:hover {
     border: 1px solid gray;
     border-radius: 5px;
     color: white;
-    background-color: orangered;
+    background-color: coral;
     width: fit-content;
     margin-left: 10px;
     margin-top: -2px;
@@ -95,4 +95,25 @@ input[type=submit]:hover {
 
 .del:active {
     background-color: orangered;
+}
+
+.edit {
+    padding: 2px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: white;
+    background-color: coral;
+    width: fit-content;
+    margin-left: 10px;
+    margin-top: -2px;
+}
+
+.edit:hover {
+    background-color: green;
+    box-shadow: 4px 4px greenyellow;
+    cursor: pointer;
+}
+
+.edit:active {
+    background-color: coral;
 }
