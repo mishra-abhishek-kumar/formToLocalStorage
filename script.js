@@ -9,6 +9,46 @@ form.addEventListener('submit', addUser);
 userList.addEventListener('click', removeUser);
 userList.addEventListener('click', editUser);
 
+//Accessing userData from localStorage and displaying it
+window.addEventListener('DOMContentLoaded', () => {
+    const localStorageObject = localStorage;
+    console.log(localStorageObject);
+    const localStorageKeys = Object.keys(localStorageObject);
+
+    for(var i=0; i<localStorageKeys.length; i++) {
+        const key = localStorageKeys[i];
+        const userDetailString = localStorageObject[key];
+        const userDetailObj = JSON.parse(userDetailString);
+        console.log(userDetailObj);
+        showUserDetail(userDetailObj);
+    }
+})
+
+function showUserDetail(user) {
+    //Creating different elements to be added in DOM
+    const li = document.createElement('li');
+    const delBtn = document.createElement('input');
+    const editBtn = document.createElement('input');
+
+    //Creating Delete button
+    delBtn.className = 'del float-right';
+    delBtn.setAttribute('type', "button");
+    delBtn.setAttribute('value', "DELETE");
+
+    //Creating Edit button
+    editBtn.className = 'edit float-right';
+    editBtn.setAttribute('type', "button");
+    editBtn.setAttribute('value', "EDIT");
+
+    //Appending all above 3 elements
+    li.appendChild(document.createTextNode(`${user.userName} - ${user.userEmail} - ${user.userPhone}`));
+    li.appendChild(delBtn);
+    li.appendChild(editBtn);
+
+    //appendimg the li to ul inside DOM
+    userList.appendChild(li);
+}
+
 function addUser(e) {
     e.preventDefault();
 
