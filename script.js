@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const key = localStorageKeys[i];
         const userDetailString = localStorageObject[key];
         const userDetailObj = JSON.parse(userDetailString);
-        console.log(userDetailObj);
         showUserDetail(userDetailObj);
     }
 })
